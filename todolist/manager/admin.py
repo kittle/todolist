@@ -23,7 +23,5 @@ class TodoItemAdmin(admin.ModelAdmin):
 #admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.unregister(Site)
-#admin.site.register(User, MyUserAdmin)
 
 admin.site.register(TodoItem, admin_class=TodoItemAdmin)
-#admin.site.register(TodoItem, TodoItemAdmin)

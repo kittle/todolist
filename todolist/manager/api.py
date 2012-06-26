@@ -7,8 +7,8 @@ from piston.utils import rc, throttle, require_mime, require_extended
 
 from models import TodoItem
 
-
 def raise_404(method):
+    "returns 404 instead DoesNotExist exception"
     def wrap(*args, **kwargs):
         from django.core.exceptions import ObjectDoesNotExist
         from django.http import Http404

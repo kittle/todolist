@@ -18,16 +18,15 @@ pip install hg+https://bitbucket.org/jespern/django-piston/
 		API
 	
 	Create:	
-curl -u kittle:kittle -X POST -H "Content-Type: application/json" --data '{ "priority": "1", "todo": "kittle" }' -v http://localhost:8000/api/item/
+curl -u kittle:kittle -X POST -H "Content-Type: application/json" --data '{ "priority": "1", "todo": "foo" }' -v http://localhost:8000/api/item/
 
 	Read:
 curl -u kittle:kittle -X GET http://localhost:8000/api/items
 curl -u kittle:kittle -X GET -v http://localhost:8000/api/item/12
 
 	Update:
-curl -u kittle:kittle -X PUT -H "Content-Type: application/json" --data '{ "priority": "11", "todo": "zuka" }' -v http://localhost:8000/api/item/14
+curl -u kittle:kittle -X PUT -H "Content-Type: application/json" --data '{ "priority": "11", "todo": "bar" }' -v http://localhost:8000/api/item/14
 
 	Delete:
 curl -u kittle:kittle -X DELETE -v http://localhost:8000/api/item/12
-
 
