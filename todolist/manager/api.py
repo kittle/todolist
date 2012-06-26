@@ -8,6 +8,17 @@ from piston.utils import rc, throttle, require_mime, require_extended
 from models import TodoItem
 
 
+def raise_404(method):
+    def wrap(*args, **kwargs):
+        from django.core.exceptions import ObjectDoesNotExist
+        from django.http import Http404
+        try:
+            return method(*args, **kwargs)
+        except ObjectDoesNotExist, ex:
+            raise Http404(ex.message)
+    return wrap
+
+
 class TodoItemHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     fields = ('id', 'todo', 'priority')
@@ -23,6 +34,7 @@ class TodoItemHandler(BaseHandler):
         #resp = rc.CREATED
         return todoitem
 
+    @raise_404
     def read(self, request, todoitem_id=None):
         if todoitem_id:
             todoitem = TodoItem.objects.get(id=todoitem_id, user=request.user)
@@ -30,6 +42,7 @@ class TodoItemHandler(BaseHandler):
             todoitem = TodoItem.objects.filter(user=request.user)
         return todoitem
 
+    @raise_404
     @require_extended
     def update(self, request, todoitem_id):
         data = request.data
@@ -39,6 +52,7 @@ class TodoItemHandler(BaseHandler):
         todoitem.save()
         return todoitem
 
+    @raise_404
     def delete(self, request, todoitem_id):
         todoitem = TodoItem.objects.get(id=todoitem_id, user=request.user)
         #if not request.user == post.author:
