@@ -98,7 +98,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'todolist.common.login_required_middleware.LoginRequiredMiddleware',
 )
 
 ROOT_URLCONF = 'todolist.urls'
@@ -166,5 +165,6 @@ LOGGING = {
     }
 }
 
+LOGIN_REDIRECT_URL = "/admin/"
 
 PISTON_DISPLAY_ERRORS = True
